@@ -16,8 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.urls.conf import include
+import main.views 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),
+    path('', main.views.index, name = 'index'),
+
+    #### urls.py 걸열님 시작 ####
+    path('gyl/', main.views.gyl, name = 'gyl'),
+    path('new_note/', main.views.new_note, name = 'new_note'),
+    #### urls.py 걸열님 끝 ####
+    
 ]
