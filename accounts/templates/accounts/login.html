@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
 
+<form action="/board_insert" id="frmBoard" method="main">
+{% csrf_token %}
+</form>
+    
+
 {% block content %}
 
   <div class="container">
@@ -25,7 +30,7 @@
           </div>
           
           <div class="mb-3">
-              <button type="submit" class="btn btn-primary">회원가입</button>
+              <button type="submit" class="btn btn-primary">로그인</button>
           </div>
 
       </form>

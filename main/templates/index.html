@@ -41,7 +41,7 @@
   </head>
 
   <body>
-    
+
     <div class="container">
       <header class="p-3 bg-dark text-white">
         <div class="container">
@@ -51,17 +51,16 @@
             </a>
     
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-              <li><a href="#" class="nav-link px-2 text-secondary">Home</a></li>
+              <li><a href="{% url 'index' %}" class="nav-link px-2 text-secondary">COFFEENOTE</a></li>
+              {% if user.is_authenticated %}
               <li>
-                <a href="{% url 'gyl' %}" class="nav-link px-2 text-white">gyl</a>
+                <a href="{% url 'hsp' %}" class="nav-link px-2 text-white">MY COFFEE NOTE</a>
               </li>
+              {% else %}
               <li>
-                <a href="{% url 'new_note' %}" class="nav-link px-2 text-white">
-                  이걸 아무거나 바꾸어도 괜찮습니다.
-                </a>
+                <a href="{% url 'login' %}" class="nav-link px-2 text-white">MY COFFEE NOTE</a>
               </li>
-              <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
-              <li><a href="#" class="nav-link px-2 text-white">About</a></li>
+              {% endif %}
             </ul>
     
             <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
@@ -69,198 +68,166 @@
             </form>
     
             <div class="text-end">
-              <button type="button" class="btn btn-outline-light me-2">Login</button>
-              <button type="button" class="btn btn-primary">Sign-up</button>
+              {% if user.is_authenticated %}
+                <form method="POST" action="{% url 'accounts:logout' %}">
+                  {% csrf_token %}
+
+                  {{ user.get_username }} 님 환영합니다.
+                  <button type="submit" class="btn btn-primary ms-3">LOGOUT</button>
+                </form>
+
+              {% else %}
+                <a class="text-decoration-none" href="{% url 'login' %}">
+                  <button type="button" class="btn btn-outline-light me-2">Login</button>
+                </a>
+                <a class="text-decoration-none" href="{% url 'sign-up' %}">
+                  <button type="button" class="btn btn-primary">Sign-up</button>
+                </a>
+              {% endif %}
+
             </div>
+            {% block content %}
+            {% endblock %}
           </div>
         </div>
       </header>
 
-<main>
+      <main>
 
-  <section class="py-5 text-center container">
-    <div class="row py-lg-5">
-      <div class="col-lg-6 col-md-8 mx-auto">
-        <h1 class="fw-light">Album example</h1>
-        <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
-        <p>
-          <a href="#" class="btn btn-primary my-2">Main call to action</a>
-          <a href="#" class="btn btn-secondary my-2">Secondary action</a>
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <div class="album py-5 bg-light">
-    <div class="container">
-
-      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        <div class="col">
-          <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+          {% if user.is_authenticated %}
+          <div class="album py-5 bg-light">
+            <div class="card-head">
+              <p class="card-text"><h3>MY COFFEE POST</h3></p>
               <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+            <div class="btn-group">
+            <div class="container">
+     
+            <!-- 메인페이지 첫번째 사진 -->
+          
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+              <div class="col">
+                <div class="card shadow-sm">
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdE2gG1whl3ygJqmoY3jNQc7szxmalChgJ0g&usqp=CAU" class="img-thumbnail" alt="PROFILE">
+
+                  <div class="card-body">
+                    <p class="card-text">평점 - 4점</p>
+                    <p class="card-text">장소 - 스타벅스</p>
+                    <p class="card-text">날짜 - 2021-12-15, 11:00</p>
+                    <p class="card-text">메뉴 - 카페라떼</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <a href="{% url 'detail1' %}">
+                          <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <small class="text-muted">9 mins</small>
               </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col">
-          <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col">
-          <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-            <div class="card-body">
-              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                </div>
-                <small class="text-muted">9 mins</small>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-</main>
-
-<footer class="text-muted py-5">
-  <div class="container">
-    <p class="float-end mb-1">
-      <a href="#">Back to top</a>
-    </p>
-    <p class="mb-1">Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
-    <p class="mb-0">New to Bootstrap? <a href="/">Visit the homepage</a> or read our <a href="../static/getting-started/introduction/">getting started guide</a>.</p>
-  </div>
-</footer>
-
-
-    <script src="../static/assets/dist/js/bootstrap.bundle.min.js"></script>
-
+            
+              
+              <!-- 메인페이지 두번째 사진 -->
+              <div class="col">
+                <div class="card shadow-sm">
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlJSPm5RmtV1gN3zkAZ4oUwlT7UTnL-hOy8g&usqp=CAU" class="img-thumbnail" alt="PROFILE">
       
-  </body>
-</html>
-  </div>
+                  <div class="card-body">
+                    <p class="card-text">평점 - 5점</p>
+                    <p class="card-text">장소 - 우리집</p>
+                    <p class="card-text">날짜 - 2021-12-01, 07:00</p>
+                    <p class="card-text">메뉴 - 에스프레소</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <a href="{% url 'detail2' %}">
+                          <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+               
+              <!-- 메인페이지 세번째 사진 -->
+              
+              <div class="col">
+                <div class="card shadow-sm">
+                  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSK-65cuaJi_lZXAwCPUPnvbaKT2kHrLu8tAQ&usqp=CAU" class="img-thumbnail" alt="PROFILE">
+      
+                  <div class="card-body">
+                    <p class="card-text">평점 - 4.5점</p>
+                    <p class="card-text">장소 - 회사 5-4회의실</p>
+                    <p class="card-text">날짜 - 2021-12-02, 23:10</p>
+                    <p class="card-text">메뉴 - 맥심 모카골드</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="btn-group">
+                        <a href="{% url 'detail3' %}">
+                          <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+
+          {% else %}
+
+            <h5>&nbsp;</h5>
+            <main class="px-3">
+              <h3>지금 어떤 커피를 마시고 있나요?</h3>
+              <p class="lead">커피의 맛과 향미는 커피의 종류와 레시피, 바리스타는 물론 기분, 날씨 그리고 함께하는 사람에 따라 달라지기도 합니다. 그 순간을 커피노트에 남겨보세요!</p>
+              <p class="lead">
+              </p>
+            </main>
+
+            <h5>&nbsp;</h5>
+            <hr>
+
+            <h5>&nbsp;</h5>
+    
+            <main class="px-3">
+              <h3>나는 어떤 커피를 좋아하나요?</h3>
+              <p class="lead">오늘 마신 커피에 대한 감상을 기록하고, 내가 어떤 커피를 좋아하는지 내 커피노트에서 한눈에 모아보세요!</p>
+              <p class="lead">
+              </p>
+            </main>
+
+            <h5>&nbsp;</h5>
+            <hr>
+
+            <h5>&nbsp;</h5>
+
+            <main class="px-3">
+              <h3>이런 커피는 어떤가요?</h3>
+              <p class="lead">내가 기록한 커피노트를 기반으로 내 취향의 커피를 추천을 받아보세요!</p>
+              <p class="lead">
+              </p>
+            </main>
+
+            <h5>&nbsp;</h5>
+
+          {% endif %}
+
+
+
+         </div>
+       </div>
+     
+     </main>
+     
+     <footer class="text-muted py-5">
+       <div class="container">
+         <p class="float-end mb-1">
+           <a href="#">Back to top</a>
+         </p>
+       </div>
+     </footer>
+     
+     
+         <script src="../static/assets/dist/js/bootstrap.bundle.min.js"></script>
+     
+           
+       </body>
+     </html>
+       </div>

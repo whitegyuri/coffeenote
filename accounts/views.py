@@ -23,7 +23,7 @@ def sign_up(request):
                 )
 
                 auth.login(request, new_user)
-                return redirect('posts:index')
+                return redirect('index')
 
         else:
             context['error'] = '아이디와 비밀번호를 다시 확인해주세요.'
@@ -45,7 +45,7 @@ def login(request):
 
             if user is not None:
                 auth.login(request, user)
-                return redirect('posts:index')
+                return redirect('index')
             else:
                 context['error'] = '아이디와 비밀번호를 다시 확인해주세요.'
 
@@ -59,4 +59,4 @@ def logout(request):
     if request.method == 'POST':
         auth.logout(request)
 
-    return redirect('main:index')
+    return redirect('index')

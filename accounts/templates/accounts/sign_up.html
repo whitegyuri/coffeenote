@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
 
+<form action="/board_insert" id="frmBoard" method="main">
+  {% csrf_token %}
+</form>
+        
+
 {% block content %}
 
   <div class="container">

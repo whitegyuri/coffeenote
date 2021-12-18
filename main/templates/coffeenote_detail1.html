@@ -1,7 +1,7 @@
 {% load static %}
 
 {% block style %}
-  <link rel="stylesheet" href="{% static 'mycoffeenote/hsp.css' %}">
+  <link rel="stylesheet" href="{% static 'mycoffeenote/coffeenote_detail.css' %}">
 {% endblock %}
 
 <!DOCTYPE html>
@@ -10,7 +10,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="hsp.css">
+    <link rel="stylesheet" href="coffeenote_detail.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <script src="https://kit.fontawesome.com/00c9f5dc7b.js" crossorigin="anonymous"></script>
@@ -36,205 +36,131 @@
                 1. 날짜/날씨
             </p>
 
-            <div class="form-floating">
-                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
-                <label for="floatingTextarea">Comments</label>
-              </div>
+            <p class="datail-desc">
+                2021년 12월 15일 오전 11시 눈
+            </p>
+
 
             <p class="section-desc">
                 2. 기분
             </p>
-            <select class="form-select" aria-label="Default select example">
-                <option selected>알 수 없음</option>
-                <option value="1">좋아요</option>
-                <option value="2">별로에요</option>
-                <option value="3">나빠요</option>
-              </select>
-
-              </select>
-            <p class="section-desc">
-                3. 커피 사진
+            <p class="datail-desc">
+                눈와서 좋다            
             </p>
 
-            <div class="input-group mb-3">
-                <input type="file" class="form-control" id="inputGroupFile02">
-                <label class="input-group-text" for="inputGroupFile02">Upload</label>
-              </div>
-            <!-- 커피사진 입력 공부 -->
 
-            <div>
-                <label for="exampleDataList" class="form-label">4. 커피샵 or 브랜드</label>
-                <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Type to search...">
-                <datalist id="datalistOptions">
-                <option value="스타벅스">
-                <option value="이디야커피">
-                <option value="파스쿠찌">
-                <option value="투썸플레스">
-                <option value="메가커피">
-                <option value="백다방">
-                <option value="할리스커피">
-                <option value="공차"> 
-                <option value="맘모스커피">
-                <option value="아티제">
-                <option value="파리크라상">
-                <option value="기타"> 
-                </datalist>
-            </div>
+            <p class="section-desc">
+                3. 장소
+            </p>
+            <p class="datail-desc">
+                스타벅스      
+            </p>
+
+
+            <p class="section-desc">
+                4. 커피 사진
+            </p>
+
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfDxvo45JktsxHkz_KBxSUd_fsExlL-s5a0w&usqp=CAU" alt="deatil-coffee1">
+            
 
             <p class="section-desc">
                 5. 커피 메뉴
             </p>
-            <select class="form-select" aria-label="Default select example">
-                <option selected>알 수 없음</option>
-                <option value="1">아메리카노</option>
-                <option value="2">에스프레소</option>
-                <option value="3">카페라떼</option>
-                <option value="4">카푸치노</option>
-                <option value="5">플랫화이트</option>
-                <option value="6">기타</option>
-              </select>
+            <p class="datail-desc">
+                스타벅스 카페라떼            
+            </p>
 
             <p class="section-desc">
                 6. 생두 원산지/농장/품종/등급
             </p>
+            <p class="datail-desc">
+                알 수 없음
+            </p>
 
-            <select class="form-select" aria-label="Default select example">
-                <option selected>알 수 없음</option>
-                <option value="1">콜롬비아</option>
-                <option value="2">에티오피아 하라</option>
-                <option value="3">에티오피아 예가체프</option>
-                <option value="4">하와이언 코나</option>
-                <option value="5">자메이카 블루마운틴</option>
-                <option value="6">자바</option>
-                <option value="7">케냐 AA</option>
-                <option value="8">스마트라 만델링</option>
-                <option value="9">모카</option>
-                <option value="10">탄자니아 피베리</option>
-                <option value="11">산토스</option>
-                <option value="12">코피루악</option>
-                <option value="13">과테말라</option>
-                <option value="14">코스타리카 따라주</option>
-                <option value="15">기타</option>
-              </select>
 
             <p class="section-desc">
                 7. 가공방법
             </p>
+            <p class="datail-desc">
+                Washed            
+            </p>
 
-            <select class="form-select" aria-label="Default select example">
-                <option selected>알 수 없음</option>
-                <option value="1">Washed</option>
-                <option value="2">Natural</option>
-                <option value="3">Pulped Natural</option>
-                <option value="4">Honey Natural</option>
-                <option value="5">Wet Hulling</option>
-                <option value="6">Anaerobic</option>
-              </select>
 
             <p class="section-desc">
                 8. 로스팅
             </p>
 
-            <select class="form-select" aria-label="Default select example">
-                <option selected>알 수 없음</option>
-                <option value="1">콜롬비아</option>
-                <option value="2">에티오피아 하라</option>
-                <option value="3">에티오피아 예가체프</option>
-                <option value="4">하와이언 코나</option>
-                <option value="5">자메이카 블루마운틴</option>
-                <option value="6">자바</option>
-                <option value="7">케냐 AA</option>
-                <option value="8">스마트라 만델링</option>
-                <option value="9">모카</option>
-                <option value="10">탄자니아 피베리</option>
-                <option value="11">산토스</option>
-                <option value="12">코피루악</option>
-                <option value="13">과테말라</option>
-                <option value="14">코스타리카 따라주</option>
-                <option value="15">기타</option>
-              </select>
+            <p class="datail-desc">
+                Dark Roasting            
+            </p>
 
             <p class="section-desc">
                 9. Brew Method
             </p>
-            <select class="form-select" aria-label="Default select example">
-                <option selected>알 수 없음</option>
-                <option value="1">에스프레소 머신</option>
-                <option value="2">드립</option>
-                <option value="3">콜드브루</option>
-              </select>
+
+            <p class="datail-desc">
+                드립           
+            </p>
+
 
             <p class="section-desc">
                 나의 느낌 1. 평점
             </p>
-            <select class="form-select" aria-label="Default select example">
-                <option selected>알 수 없음</option>
-                <option value="1">☆☆☆☆☆</option>
-                <option value="2">☆☆☆☆</option>
-                <option value="3">☆☆☆</option>
-                <option value="4">☆☆</option>
-                <option value="5">☆</option>
-              </select>
-              <p class="section-desc">
-                나의 느낌 2. 아로마
+
+            <p class="datail-desc">
+                ☆☆☆☆          
             </p>
-            <select class="form-select" aria-label="Default select example">
-                <option selected>알 수 없음</option>
-                <option value="1">Flower</option>
-                <option value="2">Fruit</option>
-                <option value="3">Herb</option>
-                <option value="4">Nut</option>
-                <option value="5">Caramel</option>
-                <option value="6">Chocolate</option>
-                <option value="7">Vanilla</option>
-                <option value="8">Spicy</option>
-                <option value="9">Smoky</option>
-              </select>
-              <p class="section-desc">
+
+            <p class="section-desc">
+                나의 느낌 2. 아로마 </p>
+            <p class="section-desc2">커피를 마시기 직전 코를 최대한 가까이 하고 깊게 맡았을 때 느껴지는 향</p> 
+            
+
+            <p class="datail-desc">
+                Nut
+            </p>
+
+
+            <p class="section-desc">
                 나의 느낌 3. Acidity
             </p>
-            <select class="form-select" aria-label="Default select example">
-                <option selected>알 수 없음</option>
-                <option value="1">산미 높음</option>
-                <option value="2">산미 보통</option>
-                <option value="3">산미 낮음</option>
-              </select>
-              <p class="section-desc">
+            <p class="section-desc2">커피를 혀 아래에 머금고 1초 후에 혀의 양 끝에서 느껴지는 산미</p> 
+            
+
+            <p class="datail-desc">
+                산미가 낮음          
+            </p>
+
+            <p class="section-desc">
                 나의 느낌 4. Body
             </p>
-            <select class="form-select" aria-label="Default select example">
-                <option selected>알 수 없음</option>
-                <option value="1">Full</option>
-                <option value="2">Medium</option>
-                <option value="3">Light</option>
-              </select>
-              <p class="section-desc">
+            <p class="section-desc2">커피를 입 전체에 머금고 난 다음 처음 숨을 쉴 때 혀 전체에 느껴지는 무게감</p> 
+
+            <p class="datail-desc">
+                Round Body          
+            </p>
+
+
+            <p class="section-desc">
                 나의 느낌 5. Finish
             </p>
-            <select class="form-select" aria-label="Default select example">
-                <option selected>알 수 없음</option>
-                <option value="1">Flower</option>
-                <option value="2">Fruit</option>
-                <option value="3">Herb</option>
-                <option value="4">Nut</option>
-                <option value="5">Caramel</option>
-                <option value="6">Chocolate</option>
-                <option value="7">Vanilla</option>
-                <option value="8">Spicy</option>
-                <option value="9">Smoky</option>
-              </select>
-              <p class="section-desc">
+            <p class="section-desc2">커피를 목으로 넘긴 다음 처음 숨을 쉴 때 오랫동안 남아 있는 느낌</p> 
+
+            <p class="datail-desc">
+                Chocolate          
+            </p>
+
+
+
+            <p class="section-desc">
                 나의 느낌 6. 그 외 입력
             </p>
 
-            <div class="form-floating">
-                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
-                <label for="floatingTextarea">Comments</label>
-              </div>
+            <p class="datail-desc">
+                무난하게 맛있음         
+            </p>
 
-            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <button class="btn btn-primary" type="button">작성 완료</button>
-              </div>
 
 
         </div>
